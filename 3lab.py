@@ -3,10 +3,14 @@ import random
 class Player:
     def __init__(self, name):
         self.name = name
-        self.cards = [random.randint(1, 9) for _ in range(5)]
+        self.cards = []
+        for _ in range(5):
+            self.cards.append(random.randint(1, 9))
 
     def play_card(self):
-        return self.cards.pop() if self.cards else None
+        if self.cards:
+            return self.cards.pop()
+        return None
 
     def take_card(self, card):
         self.cards.insert(0, card)
@@ -59,6 +63,7 @@ class Game:
         else:
             winner = self.player2.name
         print(f"Winner: {winner}")
+
 
 player_1 = Player("Player 1")
 player_2 = Player("Player 2")
